@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0);
   const [actionSelctor, setActionSelector] = useState(0);
   const [action, setAction] = useState('add');
   const [result,setResult] = useState('');
@@ -30,11 +29,15 @@ function App() {
 
   return (
     <>
-      <input id='inputField01' type="number" />
+      <input id='inputField01' type="number" defaultValue={0} />
       <p>{action}</p>
       <input onChange={(event) => {setActionSelector(event.target.valueAsNumber)}} type="range" name="action" id="action" min={0} max={3} step={1} value={actionSelctor}  />
-      <input id='inputField02' type="number" />
-      <button onClick={()=> {updateHandler((document.querySelector<HTMLInputElement>('inputField01').valueAsNumber), (document.querySelector<HTMLInputElement>('inputField02').valueAsNumber))}}>Update</button>
+      <br />
+      <input id='inputField02' type="number" defaultValue={0} />
+      <br />
+      <button onClick={()=> {updateHandler(
+        (document.querySelector<HTMLInputElement>('#inputField01').valueAsNumber),
+        (document.querySelector<HTMLInputElement>('#inputField02').valueAsNumber))}}>Update</button>
       <h2>Result: {result}</h2>
     </>
   )
